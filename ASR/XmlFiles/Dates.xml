@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<grammar version="1.0" xml:lang="pl-PL" root="rootRule" xmlns="http://www.w3.org/2001/06/grammar">
+  <rule id="rootRule">
+    <one-of>
+      <item>trzeci stycznia dwudziesta</item>
+      <item>trzeci stycznia dwudziesta pierwsza</item>
+      <item>trzeci stycznia dwudziesta druga</item>
+      <item>trzeci stycznia dwudziesta trzecia</item>
+      <item>osiemnasty stycznia dziewiętnasta</item>
+      <item>osiemnasty stycznia dziewiętnasta trzydzieści</item>
+      <item>siedemnasty stycznia dwudziesta dziesięć</item>
+    </one-of>
+  </rule>
+</grammar>

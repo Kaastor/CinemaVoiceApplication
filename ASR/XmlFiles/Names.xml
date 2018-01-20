@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<grammar version="1.0" xml:lang="pl-PL" root="rootRule" xmlns="http://www.w3.org/2001/06/grammar">
+  <rule id="rootRule">
+    <one-of>
+      <item>Przemek Czuba</item>
+      <item>Adam Nowak</item>
+      <item>Paweł Kowalczyk</item>
+      <item>Radek Kowal</item>
+      <item>Mateo Cąkała</item>
+    </one-of>
+  </rule>
+</grammar>

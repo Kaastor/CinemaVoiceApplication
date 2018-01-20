@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1" xmlns="http://www.w3.org/2001/vxml" xmlns:voxeo="http://community.voxeo.com/xmlns/vxml">
+
+  <form id="Main">
+    <field name="Buying">
+
+      <prompt>Dzień dobry, czy chciałbyś kupić bilety do kina?</prompt>
+
+      <grammar src="YesOrNo.xml" type="application/grammar-xml" />
+
+      <nomatch>
+        <prompt>Nie zrozumiałam, proszę powtórz.</prompt>
+        <reprompt/>
+      </nomatch>
+
+      <filled namelist="Buying">
+        <if cond="Buying == 'Tak'">
+          <goto next="#Account"/>
+          <elseif cond="Buying == 'Nie'"/>
+          <goto next="#End"/>
+        </if>
+      </filled>
+    </field>
+  </form>
+
+  <form id="Account">
+    <field name="HaveAccount">
+      <prompt>Czy posiadasz konto w naszym kinie?</prompt>
+
+      <grammar src="YesOrNo.xml" type="application/grammar-xml" />
+
+      <nomatch>
+        <prompt>Nie zrozumiałam, proszę powtórz.</prompt>
+        <reprompt/>
+      </nomatch>
+
+      <filled namelist="HaveAccount" >
+        <if cond="HaveAccount == 'Tak'">
+          <goto next="#AccountCredentials"/>
+          <elseif cond="HaveAccount == 'Nie'"/>
+          <goto next="#EndAccount"/>
+        </if>
+      </filled>
+    </field>
+  </form>
+
+  <form id="AccountCredentials">
+    <field name="AccountNumber">
+      <prompt>Proszę podaj swoje imię i nazwisko</prompt>
+
+      <grammar src="Names.xml" type="application/grammar-xml" />
+
+      <nomatch>
+        <prompt>Takie konto nie istnieje, proszę powtórz.</prompt>
+        <reprompt/>
+      </nomatch>
+
+      <filled namelist="AccountNumber">
+        <goto next="#Movie"/>
+      </filled>
+    </field>
+  </form>
+
+  <form id="Movie">
+    <field name="ChosenMovie">
+      <prompt>Jaki film chcesz obejżeć w naszym kinie?</prompt>
+
+      <grammar src="Movies.xml" type="application/grammar-xml" />
+
+      <nomatch>
+        <prompt>Nie gramy filmu o takim tytule, proszę wybierz inny.</prompt>
+        <reprompt/>
+      </nomatch>
+
+      <filled namelist = "ChosenMovie">
+        <goto next="#Date"/>
+      </filled>
+    </field>
+  </form>
+
+  <form id="Date">
+    <field name="DateAndTime">
+      <prompt>Proszę podaj datę i godzinę seansu.</prompt>
+
+      <grammar src="Dates.xml" type="application/grammar-xml" />
+
+      <nomatch>
+        <prompt>Nie gramy filmu w tym czasie, proszę wybierz inną datę.</prompt>
+        <reprompt/>
+      </nomatch>
+
+      <filled namelist="DateAndTime">
+        <goto next="#Ticket"/>
+      </filled>
+    </field>
+  </form>
+
+  <form id="Ticket">
+    <field name="TicketNumber">
+      <prompt>Ile biletów chcesz kupić?</prompt>
+
+      <grammar src="Numbers.xml" type="application/grammar-xml" />
+
+      <nomatch>
+        <prompt>Niepoprawna liczba, proszę wybierz inną.</prompt>
+        <reprompt/>
+      </nomatch>
+
+      <filled namelist="TicketNumber">
+        <goto next="#Confirm"/>
+      </filled>
+    </field>
+  </form>
+
+  <form id="Confirm">
+    <field name="Confirmation">
+      <prompt>Chcesz finalizować czy anulować transakcję?</prompt>
+
+      <grammar src="Complete.xml" type="application/grammar-xml" />
+
+      <nomatch>
+        <prompt>Nie zrozumiałam, proszę powtórz.</prompt>
+        <reprompt/>
+      </nomatch>
+
+      <filled namelist="Confirmation" >
+        <if cond="Confirmation == 'finalizuję'">
+          <goto next="#GoodEnd"/>
+          <elseif cond="Confirmation == 'anuluję'"/>
+          <goto next="#End"/>
+        </if>
+      </filled>
+    </field>
+  </form>
+
+  <form id="EndAccount">
+    <block>
+      <prompt>Proszę załóż konto na naszej stronie internetowej i zadzwoń ponownie, do usłyszenia.</prompt>
+    </block>
+  </form>
+
+  <form id="End">
+    <block>
+      <prompt>Transakcja została anulowana, do usłyszenia.</prompt>
+    </block>
+  </form>
+
+  <form id="GoodEnd">
+    <block>
+      <prompt>Bilety zostały kupione, do zobaczenia w kinie.</prompt>
+    </block>
+  </form>
+</vxml>
+
+
